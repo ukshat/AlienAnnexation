@@ -2,3 +2,4 @@ src/java/akshat/bin
 .DS_Store
 .classpath
 
+/dist/

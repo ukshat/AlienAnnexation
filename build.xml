@@ -1,0 +1,49 @@
+<project name="AlienAttack" default="build" basedir=".">
+    <description>
+    Builder for Alien Attack
+  </description>
+    <!-- set global properties for this build -->
+    <property name="src" location="src" />
+    <property name="build" location="bin" />
+    <property name="dist" location="dist" />
+    <property name="version" value="0.1" />
+ 
+    <target name="init">
+        <!-- Create the time stamp -->
+        <tstamp />
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build}" />
+    </target>
+ 
+    <target name="compile" depends="init" description="compile the source">
+        <!-- Compile the java code from ${src} into ${build} -->
+        <javac srcdir="${src}/java" destdir="${build}" compiler="javac1.8" source="1.8" target="1.8"/>
+    	<copy todir="${build}">
+    		  <fileset dir="${src}/resources/">
+    		    <include name="*.png"/>
+    		    <include name="*.wav"/>
+    		  </fileset>
+    	</copy>	
+    </target>
+ 
+    <target name="build" depends="compile" description="generate the distribution">
+        <buildnumber />
+        <!-- Create the distribution directory -->
+        <mkdir dir="${dist}/lib" />
+ 
+        <!-- Put everything in ${build} into the MyApplication-${version}.${build.number}.jar -->
+        <jar destfile="${dist}/lib/AlienAttack-${version}.${build.number}.jar" 
+        	basedir="${build}">
+            <manifest>
+              <attribute name="Main-Class"
+                         value="akshat.alienattack.Coordinator"/>
+            </manifest>
+        </jar>
+    </target>
+ 
+    <target name="clean" description="clean up">
+        <!-- Delete the ${build} and ${dist} directory trees -->
+        <delete dir="${build}" />
+        <delete dir="${dist}" />
+    </target>
+</project>
