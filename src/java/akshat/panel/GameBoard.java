@@ -6,6 +6,8 @@ import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.net.URL;
 
+import javax.swing.JComponent;
+
 /**
  * A Game Panel provides the means of manipulating a screen that will suffice for our game
  * design. The Panel can be implemented against an underlying technology such as Android
@@ -56,4 +58,11 @@ public interface GameBoard {
 	 * to reflect everything we want on there.
 	 */
 	public void repaint();
+	
+	/**
+	 * When we want to 
+	 */
+	public void setVisible(boolean visible);
+	
+	public void add(JComponent component);
 }

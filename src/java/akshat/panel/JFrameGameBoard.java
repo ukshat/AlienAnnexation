@@ -1,13 +1,12 @@
 package akshat.panel;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseMotionListener;
 import java.net.URL;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.RepaintManager;
 
 class JFrameGameBoard implements GameBoard {
 	
@@ -22,7 +21,6 @@ class JFrameGameBoard implements GameBoard {
 		panel.setOpaque(true);
 		window.getContentPane().validate();
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setVisible(true);
 	}
 	
 	@Override
@@ -59,6 +57,17 @@ class JFrameGameBoard implements GameBoard {
 	@Override
 	public void repaint() {
 		panel.repaint();
+	}
+
+	@Override
+	public void setVisible(boolean visible) {
+		window.setVisible(visible);
+	}
+
+	@Override
+	public void add(JComponent comp) {
+		panel.add(comp);
+		
 	}
 
 }
