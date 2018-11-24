@@ -36,6 +36,7 @@ public class Playing implements GameState {
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
 			e1.printStackTrace();
 		}
+		board.repaint();
 	} 
 
 	@Override

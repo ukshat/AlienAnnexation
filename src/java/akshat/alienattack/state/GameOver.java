@@ -1,65 +1,103 @@
 package akshat.alienattack.state;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.SwingConstants;
 
 import akshat.alienattack.Coordinator;
+import akshat.alienattack.game.level.GameLevelManager;
 import akshat.panel.DrawingBoardFactory;
 import akshat.panel.GameBoard;
+import akshat.sound.WAVPlayer;
 
 public class GameOver implements GameState {
 
 	private static final Image imageGO = new ImageIcon(Coordinator.class.getResource("/gameOver1.png")).getImage();
 	private GameBoard board;
+	private WAVPlayer bgSound;
+	private boolean ready;
 	
 	@Override
 	public void initialize() {
 		board = DrawingBoardFactory.createGameBoard(200, 0, Coordinator.SCREEN_WIDTH, 750, Coordinator.class.getResource("/bg1.png"));
+		try {
+			bgSound = new WAVPlayer(Coordinator.class.getResource("/bg1Music.wav"));
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e1) {
+			e1.printStackTrace();
+		}
 	}
 
 	@Override
 	public void enter() {
 		board.setVisible(true);
 		Graphics canvas = board.getCanvas();
-
+		ready = false;
 		int score = Playing.score;
-		Font scoreFontB = new Font("impact", Font.BOLD, 45);
 		
-		canvas.setFont(scoreFontB);
-		try {
-			Thread.sleep(1975);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
+		JLabel result = new JLabel("Score: " + score);
+		result.setBounds(300, 175, 200, 50);
+		result.setFont(new Font("Superclarendon", Font.BOLD, 24));
+		result.setHorizontalTextPosition(SwingConstants.CENTER);
+		result.setForeground(Color.white);
 
-		double rand3 = Math.random();
-		if(score<50){
-			if(rand3>=0.5)canvas.drawString("Score: " + score + " 	 Better luck next time!", 75, 700);
-			if(rand3<0.5)canvas.drawString("Score: " + score + "  	That was sad :(", 75, 700);
-			canvas.drawImage(imageGO, 0, 0, Coordinator.SCREEN_WIDTH, 750, null);
-		}
-		else if(score>=50 && score<100){
-			if(rand3>=0.5)canvas.drawString("Score: " + score + " 	 You can do better.", 75, 700);
-			if(rand3<0.5)canvas.drawString("Score: " + score + " 	 Can't you get 100?", 75, 700);
-			canvas.drawImage(imageGO, 0, 0, Coordinator.SCREEN_WIDTH, 750, null);
-		}
-		else if(score>=100 && score<500){
-			if(rand3>=0.5)canvas.drawString("Score: " + score + "  You're an alien serial killer!", 30, 700);
-			if(rand3<0.5)canvas.drawString("Score: " + score + " 	Nice one! :]", 75, 700);
-			canvas.drawImage(imageGO, 0, 0, Coordinator.SCREEN_WIDTH, 750, null);
-		}		
+		JLabel message = new JLabel();
+		message.setBounds(250, 275, 300, 50);
+		message.setFont(new Font("Superclarendon", Font.BOLD, 18));
+		message.setHorizontalTextPosition(SwingConstants.CENTER);
+		message.setForeground(Color.white);
 
-		else if(score>=500 && score<1000){
-			canvas.drawString("Score: " + score + "    You win!!", 75, 700);
-			canvas.drawImage(imageGO, 0, 0, Coordinator.SCREEN_WIDTH, 750, null);
+		boolean niceOrNot = Math.random() >= 0.5;
+		switch (GameLevelManager.getInstance().getCurrentLevel().getAlienChallenge()) {
+		case SIMPLE_ALIEN:
+			message.setText(niceOrNot ? "That was sad :(" : "Better luck next time!");
+			break;
+		case CLOAK_ALIEN:
+			message.setText(niceOrNot ? "Can't you get 100?" : "You can do better.");
+			break;
+		case NASTY_ALIEN:
+			message.setText(niceOrNot ? "You're an alien serial killer!" : "Nice one! :]");
+			break;
+		case INVISIBLE_ALIEN:
+		case MULTI_SHOOT_ALIEN:
+		case CLONING_ALIEN:
+		case REAL_NASTY_ALIEN:
+		case IMMORTAL_ALIEN:
+			message.setText("You win!!");
+			break;
 		}
-		
+		canvas.drawImage(imageGO, 0, 0, Coordinator.SCREEN_WIDTH, 750, null);
+
+		JButton button = new JButton("New game");
+		button.setBounds(300, 375, 200, 50);
+		message.setHorizontalTextPosition(SwingConstants.CENTER);
+		button.addActionListener(new ActionListener() {		    
+			public void actionPerformed(ActionEvent evt) { ready = true; } }
+		);
+
+		board.add(result);
+		board.add(message);
+		board.add(button);
 		board.repaint();
+
+		try {
+			do {
+				Thread.sleep(1000);
+			} while (!ready);
+		} catch (InterruptedException e) { }
+		
 		board.setVisible(false);
-	
+		bgSound.stop();
 		
 	}
 

@@ -11,7 +11,7 @@ public class Coordinator {
 	public static final int SCREEN_WIDTH = 800;
 
 	public static void main(String[] args) {
-
+ 
 		GameState welcome = new Welcome();
 		GameState playingState = new Playing();
 		GameState overState = new GameOver();
@@ -33,7 +33,7 @@ public class Coordinator {
 		welcome.enter();
 		do {
 			playingState.enter();
-			if (Playing.gameOn) {
+ 			if (Playing.gameOn) {
 				// we are still playing but need to go to next level
 				GameLevelManager.advanceLevel();
 				advanceState.enter();

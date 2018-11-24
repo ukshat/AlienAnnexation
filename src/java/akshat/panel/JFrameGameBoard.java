@@ -30,13 +30,11 @@ class JFrameGameBoard implements GameBoard {
 
 	@Override
 	public void addKeyListener(KeyListener listener) {
-		// TODO Auto-generated method stub
 		window.addKeyListener(listener);
 	}
 
 	@Override
 	public void addMouseMotionListener(MouseMotionListener listener) {
-		// TODO Auto-generated method stub
 		window.addMouseMotionListener(listener);
 	}
 
