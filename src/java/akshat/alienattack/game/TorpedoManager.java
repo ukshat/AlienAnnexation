@@ -7,14 +7,14 @@ import akshat.alienattack.game.level.GameLevelManager;
 public class TorpedoManager {
 	
 	private static TorpedoManager instance = 
-			new TorpedoManager(GameLevelManager.getInstance().getCurrentLevel().getTorpedoCount());
+			new TorpedoManager(GameLevelManager.getCurrentLevel().getTorpedoCount());
 
 	public static TorpedoManager getInstance() {
 		return instance;
 	}
 	
 	public static void notifyLevelChange() {
-		instance = new TorpedoManager(GameLevelManager.getInstance().getCurrentLevel().getTorpedoCount());
+		instance = new TorpedoManager(GameLevelManager.getCurrentLevel().getTorpedoCount());
 	}
 	
 	private final Torpedo[] torpedoes;

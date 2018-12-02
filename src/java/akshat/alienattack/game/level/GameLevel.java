@@ -1,5 +1,8 @@
 package akshat.alienattack.game.level;
 
+import akshat.alienattack.game.Ship;
+import akshat.alienattack.game.alien.Alien;
+
 /**
  * The game level is a mechanism to control speeds and density of various actors - ships and aliens -
  * in the game. At any time the game is in a single level. 
@@ -21,8 +24,7 @@ public interface GameLevel {
 	
 	public int getMissileVelocity();
 	
-	public AlienChallenge getAlienChallenge();
-
 	public int getScoreThreshold();
 	
+	public Alien createNextAlien(int x, int y, int vx, int vy, Ship target);
 }

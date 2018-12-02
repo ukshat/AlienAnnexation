@@ -12,13 +12,25 @@ public class GameLevelManager {
 		currentLevel = new Level1();
 	}
 	
-	public GameLevel getCurrentLevel() {
+	public static GameLevel getCurrentLevel() {
 		return currentLevel;
 	}
 	
 	public static void advanceLevel() {
-		if (currentLevel.getClass().equals(Level1.class)) {
+		String levelClass = GameLevelManager.getCurrentLevel().getClass().getCanonicalName();
+		switch (levelClass.substring(levelClass.length() - 1)) {
+		case "1":
 			GameLevelManager.currentLevel = new Level2();
+			break;
+		case "2":
+			GameLevelManager.currentLevel = new Level3();
+			break;
+		case "3":
+			GameLevelManager.currentLevel = new Level4();
+			break;
+		case "4":
+			GameLevelManager.currentLevel = new Level5();
+			break;
 		}
 	}
 }

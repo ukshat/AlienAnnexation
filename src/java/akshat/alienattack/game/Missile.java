@@ -53,7 +53,7 @@ public class Missile {
 		   torpedo.getY()<=y){
 			
 			Playing.score += 1;
-			MissileManager.remove(this); 
+			MissileManager.getInstance().remove(this); 
 			return true;
 		}
 		
@@ -65,7 +65,7 @@ public class Missile {
 	public void move(){
 		y += vy;
 		
-		if(y>720) MissileManager.remove(this); 
+		if(y>720) MissileManager.getInstance().remove(this); 
 		
 		isCollided = target.isHit(this);
 	}

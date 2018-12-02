@@ -2,7 +2,6 @@ package akshat.alienattack.state;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -39,8 +38,11 @@ public class LevelAdvance implements GameState {
 		board.setVisible(true);
 		ready = false;
 		bgSound.playLoop();
-		
-		JLabel result = new JLabel("Advancing to Level " + GameLevelManager.getInstance().getCurrentLevel().getAlienChallenge().ordinal());
+
+		String levelClassName = GameLevelManager.getCurrentLevel().getClass().getCanonicalName();
+		int levelClass = Integer.parseInt(levelClassName.substring(levelClassName.length() - 1));
+
+		JLabel result = new JLabel("Advancing to Level " + levelClass + 1);
 		result.setBounds(250, 175, 300, 50);
 		result.setFont(new Font("Superclarendon", Font.BOLD, 24));
 		result.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -58,6 +60,10 @@ public class LevelAdvance implements GameState {
 				Thread.sleep(1000);
 			} while (!ready);
 		} catch (InterruptedException e) { }
+		
+		board.remove(result);
+		board.remove(button);
+		
 		board.setVisible(false);
 		bgSound.stop();
 	}

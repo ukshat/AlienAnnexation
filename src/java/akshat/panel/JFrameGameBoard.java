@@ -63,9 +63,15 @@ class JFrameGameBoard implements GameBoard {
 	}
 
 	@Override
-	public void add(JComponent comp) {
-		panel.add(comp);
+	public void add(JComponent component) {
+		panel.add(component);
 		
+	}
+
+	@Override
+	public void remove(JComponent component) {
+		// TODO Auto-generated method stub
+		panel.remove(component);
 	}
 
 }

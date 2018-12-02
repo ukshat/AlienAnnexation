@@ -27,7 +27,7 @@ public class CloningAlien extends SimpleAlien {
 		super.move();
 		
 		if(!hasCloned && distance>requiredDistance){
-			AlienManager.add(new CloningAlien(x, y, -vx, vy, target));
+			AlienManager.getInstance().add(new CloningAlien(x, y, -vx, vy, target));
 			hasCloned = true;
 		}
 		

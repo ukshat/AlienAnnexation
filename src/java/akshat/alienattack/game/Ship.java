@@ -126,7 +126,7 @@ public class Ship implements KeyListener, MouseMotionListener {
 		if(keyCode==KeyEvent.VK_SPACE && TorpedoManager.getInstance().seatAvailable()){
 			laser.play();
 			TorpedoManager.getInstance().add( new Torpedo(x, y-Torpedo.getHeight(), 
-					GameLevelManager.getInstance().getCurrentLevel().getTorpedoVelocity()) );
+					GameLevelManager.getCurrentLevel().getTorpedoVelocity()) );
 		}
 		
 	}

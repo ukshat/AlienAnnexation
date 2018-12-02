@@ -49,8 +49,8 @@ public class Torpedo {
 		
 		if(y<30) TorpedoManager.getInstance().remove(this); 
 		
-		isCollidedWithAlien = AlienManager.isHit(this);
-		isCollidedWithMissile = MissileManager.isHit(this);
+		isCollidedWithAlien = AlienManager.getInstance().isHit(this);
+		isCollidedWithMissile = MissileManager.getInstance().isHit(this);
 	}
 	
 	

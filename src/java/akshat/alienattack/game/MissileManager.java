@@ -5,12 +5,25 @@ import java.awt.Graphics;
 import akshat.alienattack.game.level.GameLevelManager;
 
 public class MissileManager {
+	
+	private static MissileManager instance = 
+			new MissileManager(GameLevelManager.getCurrentLevel().getMissileCount());
+	
+	public static MissileManager getInstance() {
+		return instance;
+	}
+	
+	public void notifyLevelChange() {
+		instance = new MissileManager(GameLevelManager.getCurrentLevel().getMissileCount());
+	}
+	
+	private final Missile[] missiles;
 
+	private MissileManager(int missileCount) {
+		missiles = new Missile[missileCount];
+	}	
 	
-	private static Missile[] missiles = new Missile[GameLevelManager.getInstance().getCurrentLevel().getMissileCount()];
-	
-	
-	public static boolean seatAvailable(){
+	public boolean seatAvailable(){
 		for(int i=0; i<missiles.length; i++){
 			if(missiles[i]==null) return true;
 		}
@@ -18,7 +31,7 @@ public class MissileManager {
 	}
 	
 	
-	public static void add(Missile missile){
+	public void add(Missile missile){
 		for(int i=0; i<missiles.length; i++){
 			if(missiles[i]==null){
 				missiles[i] = missile;
@@ -28,7 +41,7 @@ public class MissileManager {
 	}
 	
 	
-	public static void remove(Missile missile){  
+	public void remove(Missile missile){  
 		for(int i=0; i<missiles.length; i++){
 			if(missiles[i]==missile){
 				missiles[i] = null;
@@ -39,21 +52,21 @@ public class MissileManager {
 	
 	
 	
-	public static void move(){
+	public void move(){
 		for(int i=0; i<missiles.length; i++){
 			if(missiles[i]!=null) missiles[i].move();
 		}
 	}
 	
 	
-	public static void draw(Graphics canvas){
+	public void draw(Graphics canvas){
 		for(int i=0; i<missiles.length; i++){
 			if(missiles[i]!=null) missiles[i].draw(canvas);
 		}
 	}
 	
 	
-	public static boolean isHit(Torpedo torpedo){
+	public boolean isHit(Torpedo torpedo){
 		for(int i=0; i<missiles.length; i++){
 			if(missiles[i]!=null && missiles[i].isHit(torpedo)) return true;
 		}

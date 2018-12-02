@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 /**
  * A Game Panel provides the means of manipulating a screen that will suffice for our game
@@ -65,4 +66,7 @@ public interface GameBoard {
 	public void setVisible(boolean visible);
 	
 	public void add(JComponent component);
+
+	public void remove(JComponent component);
+	
 }

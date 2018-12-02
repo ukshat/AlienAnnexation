@@ -13,7 +13,6 @@ import akshat.alienattack.game.AlienManager;
 import akshat.alienattack.game.MissileManager;
 import akshat.alienattack.game.Ship;
 import akshat.alienattack.game.TorpedoManager;
-import akshat.alienattack.game.level.AlienChallenge;
 import akshat.alienattack.game.level.GameLevelManager;
 import akshat.panel.DrawingBoardFactory;
 import akshat.panel.GameBoard;
@@ -59,31 +58,29 @@ public class Playing implements GameState {
 
 		while (gameOn){
 
-			AlienManager.create(ship);
-			AlienManager.move();
+			AlienManager.getInstance().create(ship);
+			AlienManager.getInstance().move();
 			TorpedoManager.getInstance().move();
-			MissileManager.move();
+			MissileManager.getInstance().move();
 
 			board.clear();
-			if (AlienChallenge.NASTY_ALIEN.compareTo(AlienChallenge.CLOAK_ALIEN) < 0)
-				System.out.println("Nasty Alien before Cloak Alien");
 
 			ship.draw(canvas); 
 			TorpedoManager.getInstance().draw(canvas);
-			MissileManager.draw(canvas); 
-			AlienManager.draw(canvas); 
+			MissileManager.getInstance().draw(canvas); 
+			AlienManager.getInstance().draw(canvas); 
 
 			canvas.setColor(Color.white); 
 			canvas.drawString("Score: " + score, 30, 30); 
 //				board.repaint();
 
 			try {
-				Thread.sleep(GameLevelManager.getInstance().getCurrentLevel().getGameSpeed());
+				Thread.sleep(GameLevelManager.getCurrentLevel().getGameSpeed());
 			} catch (InterruptedException e) { }
 			/*
 			 * Let's check score and decide if they go to the next level
 			 */
-			if (score > GameLevelManager.getInstance().getCurrentLevel().getScoreThreshold())
+			if (score > GameLevelManager.getCurrentLevel().getScoreThreshold())
 				break;			
 		}
 		bgSound.stop();

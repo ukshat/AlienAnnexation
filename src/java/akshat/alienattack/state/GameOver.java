@@ -58,22 +58,21 @@ public class GameOver implements GameState {
 		message.setForeground(Color.white);
 
 		boolean niceOrNot = Math.random() >= 0.5;
-		switch (GameLevelManager.getInstance().getCurrentLevel().getAlienChallenge()) {
-		case SIMPLE_ALIEN:
+		String levelClassName = GameLevelManager.getCurrentLevel().getClass().getCanonicalName();
+		int levelClass = Integer.parseInt(levelClassName.substring(levelClassName.length() - 1));
+		switch (levelClass) {
+		case 1:
 			message.setText(niceOrNot ? "That was sad :(" : "Better luck next time!");
 			break;
-		case CLOAK_ALIEN:
+		case 2:
 			message.setText(niceOrNot ? "Can't you get 100?" : "You can do better.");
 			break;
-		case NASTY_ALIEN:
+		case 3:
 			message.setText(niceOrNot ? "You're an alien serial killer!" : "Nice one! :]");
 			break;
-		case INVISIBLE_ALIEN:
-		case MULTI_SHOOT_ALIEN:
-		case CLONING_ALIEN:
-		case REAL_NASTY_ALIEN:
-		case IMMORTAL_ALIEN:
-			message.setText("You win!!");
+		case 4:
+		case 5:
+			message.setText("Congratulations, you win!!");
 			break;
 		}
 		canvas.drawImage(imageGO, 0, 0, Coordinator.SCREEN_WIDTH, 750, null);

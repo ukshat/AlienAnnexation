@@ -45,7 +45,7 @@ public abstract class Alien {
 		x += vx;
 		y += vy;
 		
-		if(y>720) AlienManager.remove(this); 
+		if(y>720) AlienManager.getInstance().remove(this); 
 		
 		if(x<0+width/2 || x>800-width/2) vx *= -1;
 		
@@ -57,7 +57,7 @@ public abstract class Alien {
 		if (wasHit || isCollided) {
 			boolean exploded = canvas.drawImage(explosionImage, x, y, null);
 			System.out.println((exploded ? "Exploded ":"Could not explode ") + "an alien");
-			AlienManager.remove(this);
+			AlienManager.getInstance().remove(this);
 		} else 
 			canvas.drawImage(alienImage, x-width/2, y-height, null);
 		
