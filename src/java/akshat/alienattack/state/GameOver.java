@@ -74,6 +74,8 @@ public class GameOver implements GameState {
 			message.setText(!nice ? "You're an alien serial killer!" : "Nice one! :]");
 			break;
 		case 4:
+			message.setText("So close, and yet so far...");
+			break;
 		case 5:
 			message.setText("Congratulations, you win!!");
 			break;

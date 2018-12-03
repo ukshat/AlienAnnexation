@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -22,7 +24,7 @@ public class LevelAdvance implements GameState {
 	private GameBoard board;
 	private WAVPlayer bgSound;
 	private boolean ready;
-	
+
 	@Override
 	public void initialize() {
 		board = DrawingBoardFactory.createGameBoard(200, 0, Coordinator.SCREEN_WIDTH, 750, Coordinator.class.getResource("/bg1.png"));
@@ -42,16 +44,45 @@ public class LevelAdvance implements GameState {
 		String levelClassName = GameLevelManager.getCurrentLevel().getClass().getCanonicalName();
 		int levelClass = Integer.parseInt(levelClassName.substring(levelClassName.length() - 1));
 
-		JLabel result = new JLabel("Advancing to Level " + levelClass + 1);
-		result.setBounds(250, 175, 300, 50);
+		JLabel result = new JLabel("Advancing to Level " + levelClass);
+		result.setBounds(200, 175, 450, 50);
 		result.setFont(new Font("Superclarendon", Font.BOLD, 24));
 		result.setHorizontalTextPosition(SwingConstants.CENTER);
 		result.setForeground(Color.white);
-		
+
 		JButton button = new JButton("Press to Start");
 		button.setBounds(100, 275, 200, 50);
-		button.addActionListener(new ActionListener() {	public void actionPerformed(ActionEvent evt) { ready = true; } });
+		button.addKeyListener(new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() == ' ')
+					e.consume();
+			}
+		});
+		button.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ready = true;
+
+			}
+		});
+
 		button.setVisible(true);
+
 		board.add(result);
 		board.add(button);
 		board.repaint();
@@ -60,10 +91,10 @@ public class LevelAdvance implements GameState {
 				Thread.sleep(1000);
 			} while (!ready);
 		} catch (InterruptedException e) { }
-		
+
 		board.remove(result);
 		board.remove(button);
-		
+
 		board.setVisible(false);
 		bgSound.stop();
 	}

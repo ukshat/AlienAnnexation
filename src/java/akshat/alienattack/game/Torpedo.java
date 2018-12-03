@@ -58,19 +58,19 @@ public class Torpedo {
 		//canvas.setColor(color);
 		//canvas.drawRect(x-width/2, y, width, height);
 		canvas.drawImage(imageT, x-width/2, y, null);
-		
+	
 		if(isCollidedWithAlien){
 			//canvas.setColor(explosionColorBig);
 //			//canvas.drawOval(x-explosionRadiusBig, y-explosionRadiusBig, 2*explosionRadiusBig, 2*explosionRadiusBig);
 			TorpedoManager.getInstance().remove(this); 
-			canvas.drawImage(imageE, x-explosionRadiusBig, y-explosionRadiusBig, null);
+//			canvas.drawImage(imageE, x-explosionRadiusBig, y-explosionRadiusBig, null);
 		}
 		
 		if(isCollidedWithMissile){
 //			canvas.setColor(explosionColorSmall);
 //			//canvas.drawOval(x-explosionRadiusSmall, y-explosionRadiusSmall, 2*explosionRadiusSmall, 2*explosionRadiusSmall);
 			TorpedoManager.getInstance().remove(this);
-			canvas.drawImage(imageES, x-explosionRadiusSmall, y-explosionRadiusSmall, null);
+//			canvas.drawImage(imageES, x-explosionRadiusSmall, y-explosionRadiusSmall, null);
 		}
 		
 	}
