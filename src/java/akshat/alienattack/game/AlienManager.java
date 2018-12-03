@@ -8,14 +8,17 @@ import akshat.alienattack.game.level.GameLevelManager;
 
 public class AlienManager {
 
-	private static AlienManager instance = 
-			new AlienManager(GameLevelManager.getCurrentLevel().getAlienCount());
+	private static AlienManager instance;
 	
 	public static AlienManager getInstance() {
 		return instance;
 	}
 	
 	public void notifyLevelChange() {
+		instance = new AlienManager(GameLevelManager.getCurrentLevel().getAlienCount());
+	}
+	
+	public static void reset() {
 		instance = new AlienManager(GameLevelManager.getCurrentLevel().getAlienCount());
 	}
 	

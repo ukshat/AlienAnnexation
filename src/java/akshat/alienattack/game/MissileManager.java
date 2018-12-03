@@ -6,11 +6,14 @@ import akshat.alienattack.game.level.GameLevelManager;
 
 public class MissileManager {
 	
-	private static MissileManager instance = 
-			new MissileManager(GameLevelManager.getCurrentLevel().getMissileCount());
+	private static MissileManager instance;
 	
 	public static MissileManager getInstance() {
 		return instance;
+	}
+	
+	public static void reset() {
+		instance = new MissileManager(GameLevelManager.getCurrentLevel().getMissileCount());
 	}
 	
 	public void notifyLevelChange() {

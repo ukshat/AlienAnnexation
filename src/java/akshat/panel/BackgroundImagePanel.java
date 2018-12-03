@@ -16,6 +16,7 @@ class BackgroundImagePanel extends JPanel {
 		} catch (IOException e) {
 			throw new RuntimeException("There's a problem in the path " + imageURL + " of our background image", e);
 		}
+
 	}
 	
 	public void paintComponent(Graphics g) {

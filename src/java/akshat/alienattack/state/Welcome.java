@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
 import java.io.IOException;
 
 import javax.sound.sampled.LineUnavailableException;
@@ -16,6 +19,7 @@ import akshat.alienattack.Coordinator;
 import akshat.panel.DrawingBoardFactory;
 import akshat.panel.GameBoard;
 import akshat.sound.WAVPlayer;
+import javafx.scene.input.MouseEvent;
 
 public class Welcome implements GameState {
 	private GameBoard board;
@@ -35,8 +39,6 @@ public class Welcome implements GameState {
 
 
 	public void enter() {
-		board.setVisible(true);
-		bgSound.playLoop();
 
 		JLabel welcome = new JLabel("Alien Attack");
 		welcome.setBounds(300, 275, 200, 50);
@@ -46,15 +48,42 @@ public class Welcome implements GameState {
 		JButton button = new JButton("Start game");
 		button.setBounds(250, 375, 300, 50);
 		welcome.setHorizontalTextPosition(SwingConstants.CENTER);
-		button.addActionListener(new ActionListener() {		    
-			public void actionPerformed(ActionEvent evt) { ready = true; } }
-		);
+		button.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyChar() == ' ')
+					e.consume();
+			}
+		});
+		button.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ready = true;
+				
+			}
+		});
 		JLabel credit = new JLabel("Producer: Akshat Mehta");
 		credit.setBounds(250, 575, 300, 50);
 		credit.setFont(new Font("Superclarendon", Font.PLAIN, 18));
 		credit.setHorizontalTextPosition(SwingConstants.CENTER);
 		credit.setForeground(Color.lightGray);
 
+		board.setVisible(true);
+		bgSound.playLoop();
 		board.add(welcome);
 		board.add(button);
 		board.add(credit);

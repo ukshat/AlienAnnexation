@@ -27,6 +27,9 @@ public class Playing implements GameState {
 
 	@Override
 	public void initialize() {
+		AlienManager.reset();
+		MissileManager.reset();
+		TorpedoManager.reset();
 		gameOn = false;
 		score = 0;
 		board = DrawingBoardFactory.createGameBoard(200, 0, Coordinator.SCREEN_WIDTH, 750, Coordinator.class.getResource("/bg1.png"));

@@ -19,7 +19,6 @@ public class Coordinator {
 		welcome.initialize();
 		playingState.initialize();
 		advanceState.initialize();
-		overState.initialize();
 
 		/* Welcome the user and orient them towards the game
 		 * When the player "starts" the game, we will switch to the playing game board.
@@ -38,6 +37,7 @@ public class Coordinator {
 				GameLevelManager.advanceLevel();
 				advanceState.enter();
 			} else {
+				overState.initialize();
 				overState.enter();
 				playingState.initialize();
 			}
