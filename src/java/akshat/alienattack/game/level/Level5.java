@@ -51,7 +51,7 @@ public class Level5 implements GameLevel{
 	@Override
 	public int getScoreThreshold() {
 		// TODO Auto-generated method stub
-		return 500;
+		return -1;
 	}
 
 	@Override

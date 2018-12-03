@@ -83,7 +83,8 @@ public class Playing implements GameState {
 			/*
 			 * Let's check score and decide if they go to the next level
 			 */
-			if (score > GameLevelManager.getCurrentLevel().getScoreThreshold())
+			if (GameLevelManager.getCurrentLevel().getScoreThreshold() > 0 && 
+					score > GameLevelManager.getCurrentLevel().getScoreThreshold())
 				break;			
 		}
 		bgSound.stop();
