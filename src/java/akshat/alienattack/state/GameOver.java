@@ -55,7 +55,7 @@ public class GameOver implements GameState {
 		result.setForeground(Color.white);
 
 		JLabel message = new JLabel();
-		message.setBounds(250, 275, 300, 50);
+		message.setBounds(250, 275, 400, 50);
 		message.setFont(new Font("Superclarendon", Font.BOLD, 18));
 		message.setHorizontalTextPosition(SwingConstants.CENTER);
 		message.setForeground(Color.white);
@@ -77,7 +77,7 @@ public class GameOver implements GameState {
 			message.setText("So close, and yet so far...");
 			break;
 		case 5:
-			message.setText("Congratulations, you win!!");
+			message.setText("Congratulations, you won!!");
 			break;
 		}
 		canvas.drawImage(imageGO, 0, 0, Coordinator.SCREEN_WIDTH, 750, null);

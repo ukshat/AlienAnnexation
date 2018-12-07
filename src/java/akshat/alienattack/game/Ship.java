@@ -35,7 +35,7 @@ public class Ship implements KeyListener, MouseMotionListener {
 		this.x = x;
 		this.y = y;
 		try {
-			laser = new WAVPlayer(Ship.class.getResource("/laser1.wav"));
+			laser = new WAVPlayer(Ship.class.getResource("/laser.wav"));
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

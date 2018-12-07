@@ -41,13 +41,27 @@ public class Welcome implements GameState {
 	public void enter() {
 
 		JLabel welcome = new JLabel("Alien Attack");
-		welcome.setBounds(300, 275, 200, 50);
+		welcome.setBounds(300, 200, 200, 50);
 		welcome.setFont(new Font("Superclarendon", Font.BOLD, 24));
 		welcome.setHorizontalTextPosition(SwingConstants.CENTER);
 		welcome.setForeground(Color.white);
+		JLabel howToPlay = new JLabel("Press space to shoot");
+		howToPlay.setBounds(310, 285, 200, 50);
+		howToPlay.setFont(new Font("Marion", Font.BOLD, 18));
+		howToPlay.setHorizontalTextPosition(SwingConstants.CENTER);
+		howToPlay.setForeground(Color.white);
+		JLabel howToPlay2 = new JLabel("Move with the mouse");
+		howToPlay2.setBounds(305, 315, 200, 50);
+		howToPlay2.setFont(new Font("Marion", Font.BOLD, 18));
+		howToPlay2.setHorizontalTextPosition(SwingConstants.CENTER);
+		howToPlay2.setForeground(Color.white);
+		JLabel toWin = new JLabel("To win, get 400 points.");
+		toWin.setBounds(305, 345, 200, 50);
+		toWin.setFont(new Font("Marion", Font.BOLD, 18));
+		toWin.setHorizontalTextPosition(SwingConstants.CENTER);
+		toWin.setForeground(Color.white);
 		JButton button = new JButton("Start game");
-		button.setBounds(250, 375, 300, 50);
-		welcome.setHorizontalTextPosition(SwingConstants.CENTER);
+		button.setBounds(250, 390, 300, 50);
 		button.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -77,16 +91,22 @@ public class Welcome implements GameState {
 			}
 		});
 		JLabel credit = new JLabel("Producer: Akshat Mehta");
-		credit.setBounds(250, 575, 300, 50);
+		credit.setBounds(275, 575, 300, 50);
 		credit.setFont(new Font("Superclarendon", Font.PLAIN, 18));
 		credit.setHorizontalTextPosition(SwingConstants.CENTER);
 		credit.setForeground(Color.lightGray);
-
+		
+		
+		
 		board.setVisible(true);
 		bgSound.playLoop();
 		board.add(welcome);
+		board.add(howToPlay);
+		board.add(howToPlay2);
+		board.add(toWin);
 		board.add(button);
 		board.add(credit);
+		
 		board.repaint();
 
 		try {

@@ -3,6 +3,7 @@ package akshat.alienattack.game.level;
 import akshat.alienattack.game.Ship;
 import akshat.alienattack.game.alien.Alien;
 import akshat.alienattack.game.alien.CloakAlien;
+import akshat.alienattack.game.alien.CloningAlien;
 import akshat.alienattack.game.alien.ImmortalAlien;
 import akshat.alienattack.game.alien.InvisibleAlien;
 import akshat.alienattack.game.alien.MultiShootAlien;
@@ -21,7 +22,7 @@ public class Level5 implements GameLevel{
 	@Override
 	public int getGameSpeed() {
 		// TODO Auto-generated method stub
-		return 20;
+		return 15;
 	}
 
 	@Override
@@ -33,7 +34,7 @@ public class Level5 implements GameLevel{
 	@Override
 	public int getTorpedoCount() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 20;
 	}
 
 	@Override
@@ -58,18 +59,20 @@ public class Level5 implements GameLevel{
 	public Alien createNextAlien(int x, int y, int vx, int vy, Ship target) {
 		// In Level 5, we create fewer Simple, Cloak, Nasty, Multi Shoot, Real Nasty, and Invisible aliens, but we create Immortal aliens
 		double coinFlip = Math.random();
-		if (coinFlip < 0.12) 
+		if (coinFlip < 0.11) 
 			return new SimpleAlien(x, y, vx, vy, null, target);
-		else if (coinFlip < 0.24)
+		else if (coinFlip < 0.22)
 			return new NastyAlien(x, y, vx, vy, target);
-		else if (coinFlip < 0.36)
+		else if (coinFlip < 0.33)
 			return new CloakAlien(x, y, vx, vy, target);
-		else if (coinFlip < 0.48)
+		else if (coinFlip < 0.44)
 			return new InvisibleAlien(x, y, vx, vy, target);
-		else if (coinFlip < 0.63)
+		else if (coinFlip < 0.55)
 			return new MultiShootAlien(x, y, vx, vy, target);
-		else if (coinFlip < 0.78)
+		else if (coinFlip < 0.67)
 			return new RealNastyAlien(x, y, vx, vy, target);
+		else if (coinFlip < 0.8)
+			return new CloningAlien(x, y, vx, vy, target);
 		else
 			return new ImmortalAlien(x, y, vx, vy, target);
 	}

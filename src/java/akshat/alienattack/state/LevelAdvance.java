@@ -51,7 +51,7 @@ public class LevelAdvance implements GameState {
 		result.setForeground(Color.white);
 
 		JButton button = new JButton("Press to Start");
-		button.setBounds(100, 275, 200, 50);
+		button.setBounds(250, 275, 200, 50);
 		button.addKeyListener(new KeyListener() {
 
 			@Override

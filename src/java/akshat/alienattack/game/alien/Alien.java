@@ -54,7 +54,7 @@ public abstract class Alien {
 	}
 
 	public void draw(Graphics canvas) {
-		if (wasHit || isCollided/* || Math.random() > 0.95*/) {
+		if (wasHit || isCollided) {
 			canvas.drawImage(explosionImage, x, y, null);
 			AlienManager.getInstance().remove(this);
 		} else 

@@ -25,11 +25,13 @@ public class CloningAlien extends SimpleAlien {
 
 	public void move(){
 		super.move();
-		
+		distance += vy;
 		if(!hasCloned && distance>requiredDistance){
 			AlienManager.getInstance().add(new CloningAlien(x, y, -vx, vy, target));
 			hasCloned = true;
 		}
+		
+		if(hasCloned) System.out.println("Cloned.");
 		
 		isCollided = target.isHit(this);
 	}

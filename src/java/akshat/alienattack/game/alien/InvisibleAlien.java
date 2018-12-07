@@ -20,13 +20,13 @@ public class InvisibleAlien extends SimpleAlien{
 	
 	
 	public void draw(Graphics canvas){
-		super.draw(canvas);
 		Graphics2D canvas2D = (Graphics2D) canvas;
 		
 		Composite original = canvas2D.getComposite();		
 		
 		Composite c = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, transparency);
 		canvas2D.setComposite(c);
+		super.draw(canvas);
 		
 		canvas2D.setComposite(original);
 
